@@ -1,43 +1,11 @@
 (() => {
   'use strict';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const toggle = document.querySelector('.nav-toggle');
-  const navigation = document.querySelector('.navigation');
-  const scrim = document.querySelector('.nav-scrim');
-  let navOpen = false;
-  const narrow = window.matchMedia('(max-width: 900px)');
-  function setNavigation(open, returnFocus = false) {
-    navOpen = open;
-    navigation.classList.toggle('open', open);
-    scrim.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Закрыть меню сайта' : 'Открыть меню сайта');
-    navigation.inert = narrow.matches && !open;
-    document.body.classList.toggle('locked', open);
-    if (returnFocus) toggle.focus();
-  }
-  toggle.addEventListener('click', () => setNavigation(!navOpen));
-  scrim.addEventListener('click', () => setNavigation(false, true));
-  navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNavigation(false)));
-  narrow.addEventListener('change', () => setNavigation(false));
-  setNavigation(false);
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && navOpen) setNavigation(false, true);
-    if (event.key === 'Tab' && navOpen) {
-      const items = [...navigation.querySelectorAll('a'), document.querySelector('.header-book'), toggle];
-      const first = items[0], last = items[items.length - 1];
-      if (event.shiftKey && (document.activeElement === first || !items.includes(document.activeElement))) {
-        event.preventDefault(); last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault(); first.focus();
-      }
-    }
-  });
   let activeDialog = null;
   let dialogTrigger = null;
   const pendingClose = new WeakMap();
   function openDialog(dialog, trigger) {
-    setNavigation(false);
+    window.FamilyChrome?.closeNavigation();
     const oldTimer = pendingClose.get(dialog);
     if (oldTimer) clearTimeout(oldTimer);
     dialogTrigger = trigger;

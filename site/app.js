@@ -1,39 +1,5 @@
 const motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
-const navToggle=document.querySelector('.nav-toggle');
-const nav=document.querySelector('.site-nav');
-const mobileNavigation=window.matchMedia('(max-width:950px)');
-nav.querySelectorAll('a').forEach((link,index)=>link.style.setProperty('--nav-order',index));
-
-function setNav(open){
- const expanded=mobileNavigation.matches&&open;
- nav.classList.toggle('open',expanded);
- navToggle.setAttribute('aria-expanded',String(expanded));
- navToggle.setAttribute('aria-label',expanded?'Закрыть меню сайта':'Открыть меню сайта');
- nav.inert=mobileNavigation.matches&&!expanded;
- if(mobileNavigation.matches)nav.setAttribute('aria-hidden',String(!expanded));
- else nav.removeAttribute('aria-hidden');
- document.body.classList.toggle('nav-open',expanded);
-}
-function closeNav(){setNav(false)}
-navToggle.addEventListener('click',()=>{
- const open=!nav.classList.contains('open');setNav(open);
- if(open)nav.querySelector('a').focus({preventScroll:true});
-});
-document.addEventListener('keydown',event=>{
- if(event.key==='Escape'&&nav.classList.contains('open')){closeNav();navToggle.focus()}
-});
-document.addEventListener('click',event=>{
- if(!event.target.closest('.site-header')){
-  const restoreFocus=nav.contains(document.activeElement);closeNav();
-  if(restoreFocus)navToggle.focus({preventScroll:true});
- }
-});
-document.addEventListener('focusin',event=>{
- if(nav.classList.contains('open')&&!event.target.closest('.site-header'))closeNav();
-});
-mobileNavigation.addEventListener('change',closeNav);
-nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeNav));
-setNav(false);
+function closeNav(){window.FamilyChrome?.closeNavigation()}
 
 const booking=document.getElementById('booking-dialog');
 const photoDialog=document.getElementById('photo-dialog');

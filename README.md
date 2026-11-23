@@ -19,6 +19,7 @@
 - `site/bar/index.html` — барная карта.
 - `site/about/`, `site/cafe/`, `site/delivery/`, `site/contacts/` — остальные страницы.
 - `site/rybku-syest/` — сайт суши-бара: главная, меню, контакты, оформление и изображения.
+- `site/shared/chrome.css` и `site/shared/chrome.js` — общее оформление шапок, подвалов и поведение навигации обоих заведений.
 - `site/styles.css` — оформление, `site/app.js` — взаимодействия и анимации.
 - `site/assets/` и `site/fonts/` — изображения и шрифты.
 
