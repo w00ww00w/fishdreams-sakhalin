@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fishdreams-sakhalin.resplendentclay5.chatgpt.site/sitemap.xml
