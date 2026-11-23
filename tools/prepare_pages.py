@@ -10,7 +10,7 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL_ORIGIN = 'https://fishdreams-sakhalin.resplendentclay5.chatgpt.site'
-ATTR = re.compile(r'''((?:href|src|action|poster)\s*=\s*["'])(/(?!/)[^"']*)(["'])''', re.I)
+ATTR = re.compile(r'''((?:href|src|action|poster|data-photo)\s*=\s*["'])(/(?!/)[^"']*)(["'])''', re.I)
 CSS_URL = re.compile(r'''url\((["']?)(/(?!/)[^)"']*)\1\)''')
 TEXT_EXTENSIONS = {'.html', '.css', '.js', '.json', '.xml', '.txt', '.svg'}
 
